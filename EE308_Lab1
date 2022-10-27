@@ -1,0 +1,136 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<sstream>
+#include<stack>
+using namespace std;
+
+//Define variables	
+
+int keyword_num = 0;
+int switch_num = 0;
+int case_num[100] = {0};
+int ifelse_num = 0;
+int if_elseif_else_num = 0;
+int num = -1;
+int str1[1000]={0};
+string keyword[32] = {
+	"auto","break","case","char","const","continue","default","double",
+	"do","else","enum","extern","float","for","goto","if","int","long",
+	"register","return","short","signed","sizeof","static","struct",
+	"switch","typedef","union","unsigned","void","volatile","while"
+};
+
+
+
+//Define functions
+void Level_1(string str);		
+void Level_2(string str);		
+void Level_34(string str);	 
+
+int main ()
+{
+	//Read file
+	string file_name;
+	int level;
+	string temp;
+	cout << "Please input the file name: ";		
+	cin >> file_name;						
+	cout << "Please input the level(1-4): ";
+	cin >> level;
+
+	ifstream file(file_name.c_str(), ios::in);	//read file	
+
+	while(getline(file, temp))			//Read line by line
+	{
+		istringstream is(temp);	
+		string str;
+		if(level >= 3)                    
+			Level_34(temp);
+
+		while(is >> str){				//Count the number of symbols.
+			if(level >= 1)
+				Level_1(str);
+			if(level >= 2)
+				Level_2(str);
+		}
+	}
+	
+	//Output
+	if(level<1||level>4)
+		cout<<"Error level number";		
+	else 
+	{
+		if(level >= 1)
+		cout << endl << "total num = " << keyword_num << endl;
+
+		if(level >= 2){
+			cout << "switch num = " << switch_num << endl;
+			cout << "case num = " ;
+			for(int j = 1; j <= switch_num; j++)
+				cout << case_num[j]<<" ";
+			cout<<endl;
+		}
+	
+		if(level >= 3){
+			cout << "if-else num = " << ifelse_num << endl;
+		}
+	
+		if(level >= 4){
+			cout << "if-elseif-else num = " << if_elseif_else_num;
+		}
+	}
+
+}
+
+
+//Declaring functions
+void Level_1(string str)		
+{
+	for(int j = 0; j < 32; j++)			
+	{
+		if(str.find(keyword[j],0)!=string::npos){
+			keyword_num++;
+			break;
+		}
+	}
+}
+
+void Level_2(string str)		
+{
+	if(str.find("switch")!=string::npos){
+		switch_num++;
+	}
+
+	if(str.find("case")!=string::npos){
+		case_num[switch_num]++;
+	}
+
+}
+
+void Level_34(string str)		
+{
+	if(str.find("else if")!=string::npos){
+		num++;
+		str1[num]=2;
+	}
+	else
+	{
+		if(str.find("if")!=string::npos){
+			num++;
+			str1[num]=1;
+		}
+		if(str.find("else")!=string::npos){
+			if(str1[num] == 1){
+				ifelse_num++;
+				num--;
+			}
+			else{
+				if(str1[num]== 2){
+					if_elseif_else_num++;
+					num--;
+				}
+			}
+		}
+	}
+}
