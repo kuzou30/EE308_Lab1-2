@@ -1,0 +1,29 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<sstream>
+#include<stack>
+using namespace std;
+
+//Define variables	
+
+int keyword_num = 0;
+int switch_num = 0;
+int case_num[100] = {0};
+int ifelse_num = 0;
+int if_elseif_else_num = 0;
+int num = -1;
+int str1[1000]={0};
+string keyword[32] = {
+	"auto","break","case","char","const","continue","default","double",
+	"do","else","enum","extern","float","for","goto","if","int","long",
+	"register","return","short","signed","sizeof","static","struct",
+	"switch","typedef","union","unsigned","void","volatile","while"
+};
+
+
+
+//Define functions
+void Level_1(string str);		
+void Level_2(string str);		
+void Level_34(string str);	 
