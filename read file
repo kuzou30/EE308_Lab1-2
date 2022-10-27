@@ -1,0 +1,25 @@
+	//Read file
+	string file_name;
+	int level;
+	string temp;
+	cout << "Please input the file name: ";		
+	cin >> file_name;						
+	cout << "Please input the level(1-4): ";
+	cin >> level;
+
+	ifstream file(file_name.c_str(), ios::in);	//read file	
+
+	while(getline(file, temp))			//Read line by line
+	{
+		istringstream is(temp);	
+		string str;
+		if(level >= 3)                    
+			Level_34(temp);
+
+		while(is >> str){				//Count the number of symbols.
+			if(level >= 1)
+				Level_1(str);
+			if(level >= 2)
+				Level_2(str);
+		}
+	}
