@@ -1,0 +1,24 @@
+//Output
+	if(level<1||level>4)
+		cout<<"Error level number";		
+	else 
+	{
+		if(level >= 1)
+		cout << endl << "total num = " << keyword_num << endl;
+
+		if(level >= 2){
+			cout << "switch num = " << switch_num << endl;
+			cout << "case num = " ;
+			for(int j = 1; j <= switch_num; j++)
+				cout << case_num[j]<<" ";
+			cout<<endl;
+		}
+	
+		if(level >= 3){
+			cout << "if-else num = " << ifelse_num << endl;
+		}
+	
+		if(level >= 4){
+			cout << "if-elseif-else num = " << if_elseif_else_num;
+		}
+	}
