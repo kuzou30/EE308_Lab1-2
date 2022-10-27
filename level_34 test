@@ -1,0 +1,26 @@
+void Level_34(string str)		
+{
+	if(str.find("else if")!=string::npos){
+		num++;
+		str1[num]=2;
+	}
+	else
+	{
+		if(str.find("if")!=string::npos){
+			num++;
+			str1[num]=1;
+		}
+		if(str.find("else")!=string::npos){
+			if(str1[num] == 1){
+				ifelse_num++;
+				num--;
+			}
+			else{
+				if(str1[num]== 2){
+					if_elseif_else_num++;
+					num--;
+				}
+			}
+		}
+	}
+}
