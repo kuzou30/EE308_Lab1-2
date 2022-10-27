@@ -1,0 +1,11 @@
+void Level_2(string str)		
+{
+	if(str.find("switch")!=string::npos){
+		switch_num++;
+	}
+
+	if(str.find("case")!=string::npos){
+		case_num[switch_num]++;
+	}
+
+}
