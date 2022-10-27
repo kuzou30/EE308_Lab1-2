@@ -1,0 +1,10 @@
+void Level_1(string str)		
+{
+	for(int j = 0; j < 32; j++)			
+	{
+		if(str.find(keyword[j],0)!=string::npos){
+			keyword_num++;
+			break;
+		}
+	}
+}
